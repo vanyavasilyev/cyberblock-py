@@ -1,7 +1,7 @@
 import json
 from typing import List, Optional, Any
 
-from models import ScannerInterface, DBDriverInterface, AnalyzerInterface
+from models import ScannerInterface, DBDriverInterface, AnalyzerInterface, AddressNode, TransactionEdge
 from .query import Neo4jQuery
 
 
@@ -22,8 +22,19 @@ class Neo4jAnalyzer(AnalyzerInterface):
                     query_str=query_dict['query_str']
                 )
 
-    def _scan_from(self, address: str, max_iterations: Optional[int] = None):
-        self.db_driver.load(self.active_scanner.scan_from(address, max_iterations))
+    def _scan_from(self, address: str, max_iterations: Any):
+        self.db_driver.load(self.active_scanner.scan_from(address, int(max_iterations)))
+
+    def _db_response_handler(self, response):
+        as_list = response.values()
+        res = []
+        for obj in as_list:
+            properties = obj[0]._properties
+            if 'address' in properties:
+                res.append(AddressNode(properties['address']))
+            if 'tx_hash' in properties:
+                res.append(TransactionEdge(properties['tx_hash'], '', ''))
+        return res
 
     def run_command(self, command: str, args: Any):
         if command == 'scan':
@@ -32,4 +43,4 @@ class Neo4jAnalyzer(AnalyzerInterface):
         if command not in self.queries:
             return "No such command"
         res = self.db_driver.query(self.queries[command].format_query(args))
-        return list(res)
+        return self._db_response_handler(res)

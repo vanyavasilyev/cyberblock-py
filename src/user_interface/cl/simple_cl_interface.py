@@ -15,7 +15,11 @@ class CLInterface:
                     command = inp[0]
                     args = [] if len(inp) == 1 else inp[1:]
                     res = self.analyzer.run_command(command, args)
-                    print(res)
+                    if isinstance(res, list):
+                        for obj in res:
+                            print(obj)
+                    else:
+                        print(res)
                 except Exception as e:
                     print("Error")
                     print(e)

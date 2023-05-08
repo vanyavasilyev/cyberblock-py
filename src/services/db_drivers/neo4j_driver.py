@@ -25,7 +25,7 @@ class Neo4jDriver(DBDriverInterface):
     def add_edge(self, edge: TransactionEdge):
         self.driver.session().run(
             f'MATCH (a:Address), (b:Address) WHERE a.address="{edge.address_from}" AND b.address="{edge.address_to}" ' +\
-            f'CREATE (a)-[r:{edge.tx_type._name_}]->(b)'
+            f'CREATE (a)-[r:{edge.tx_type._name_} {{tx_hash:"{edge.tx_hash}"}}]->(b)'
         )
 
     def load(self, data_generator: Generator[Union[AddressNode, TransactionEdge], None, None]):
