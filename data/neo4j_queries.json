@@ -1,0 +1,17 @@
+[
+    {
+        "name": "clear_db",
+        "arg_names": [],
+        "query_str": "MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r"
+    },
+    {
+        "name": "get_all",
+        "arg_names": [],
+        "query_str": "MATCH (n) RETURN n"
+    },
+    {
+        "name": "address_txs",
+        "arg_names": ["address"],
+        "query_str": "MATCH (n) WHERE n.address = \"{}\"  MATCH (n)-[r]-() RETURN r;"
+    }
+]
