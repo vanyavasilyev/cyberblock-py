@@ -7,8 +7,8 @@ from .ethereum_scanner import EthereumScanner
 
 
 class BFSEthScanner(EthereumScanner):
-    def scan_from(self, address: str, max_inerations: Optional[int] = None
-                  ) -> Generator[Union[AddressNode, TransactionEdge], None, None]:
+    def scan_from(self, address: str, max_inerations: Optional[int] = None,
+                  startblock: int = 0, endblock: int = 99999999) -> Generator[Union[AddressNode, TransactionEdge], None, None]:
         iterations_left = max_inerations if max_inerations else -1
 
         queue = Queue()
@@ -30,8 +30,8 @@ class BFSEthScanner(EthereumScanner):
             for tx in txs_to_add:
                 yield tx
 
-            txs = self.get_txs_for_address(cur_address)
             to_add = defaultdict(list)
+            txs = self.get_txs_for_address(cur_address, False, startblock, endblock)
             for tx in txs:
                 if (tx.address_to != cur_address) and (tx.address_to != ''):
                     if tx.address_to not in address_set:
@@ -43,6 +43,21 @@ class BFSEthScanner(EthereumScanner):
 
                 if (tx.tx_hash not in tx_hash_set) and (tx.address_from in visited) and (tx.address_to in visited):
                     tx_hash_set.add(tx.tx_hash)
+                    yield tx
+
+            internal_txs = self.get_txs_for_address(cur_address, True, startblock, endblock)
+            for tx in internal_txs:
+                if (tx.address_to != cur_address) and (tx.address_to != ''):
+                    if tx.address_to not in address_set:
+                        to_add[tx.address_to].append(tx)
+
+                if (tx.address_from != cur_address) and (tx.address_from != ''):
+                    if tx.address_from not in address_set:
+                        to_add[tx.address_from].append(tx)
+
+                internal_tx_hash = tx.tx_hash + tx.trace_id
+                if (internal_tx_hash not in tx_hash_set) and (tx.address_from in visited) and (tx.address_to in visited):
+                    tx_hash_set.add(internal_tx_hash)
                     yield tx
             
             for new_address, new_txs in to_add.items():

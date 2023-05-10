@@ -6,6 +6,7 @@ from .graph import AddressNode, TransactionEdge
 class ScannerInterface(ABC):
     @abstractmethod
     def scan_from(self, address: str,
-                  max_iterations: Optional[int] = None
+                  max_iterations: Optional[int] = None,
+                  *args
         ) -> Generator[Union[AddressNode, TransactionEdge], None, None]:
         pass

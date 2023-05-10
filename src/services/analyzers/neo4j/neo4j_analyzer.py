@@ -22,8 +22,12 @@ class Neo4jAnalyzer(AnalyzerInterface):
                     query_str=query_dict['query_str']
                 )
 
-    def _scan_from(self, address: str, max_iterations: Any):
-        self.db_driver.load(self.active_scanner.scan_from(address, int(max_iterations)))
+    def _scan_from(self, address: str, max_iterations: Any,
+                   startblock: int = 9000000, endblock: int = 99999999): 
+        self.db_driver.load(self.active_scanner.scan_from(address,
+                                                          int(max_iterations),
+                                                          int(startblock),
+                                                          int(endblock)))
 
     def _db_response_handler(self, response):
         as_list = response.values()

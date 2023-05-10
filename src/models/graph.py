@@ -27,6 +27,7 @@ class TransactionEdge:
     tx_hash: str
     address_from: str
     address_to: str
+    trace_id: str = ''
     date: Optional[int] = None
     tx_type: Optional[TransactionType] = None
     value: Optional[float] = None
