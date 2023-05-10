@@ -1,4 +1,5 @@
 import requests
+from collections import defaultdict
 from abc import ABC
 from typing import List, Generator
 
@@ -20,20 +21,24 @@ class EthereumScanner(ScannerInterface, ABC):
             try:
                 res = requests.get(url)
                 txs_as_dicts = res.json()['result']
-                for tx_dict in txs_as_dicts:
+                for _tx_dict in txs_as_dicts:
+                    tx_dict = defaultdict(lambda: None)
+                    tx_dict.update(_tx_dict)
                     tx_type = TransactionType.SEND
                     trace_id = ''
+                    address_to = tx_dict['to']
                     if tx_dict['contractAddress'] != '':
                         tx_type = TransactionType.CALL
                     if tx_dict['to'] == '':
                         tx_type = TransactionType.CREATE
+                        address_to = tx_dict['contractAddress']
                     if internal:
                         tx_type = TransactionType.INTERNAL
                         trace_id = tx_dict['traceId']
                     tx = TransactionEdge(
                         tx_hash=tx_dict['hash'],
-                        address_from=tx_dict['from'],
-                        address_to=tx_dict['to'],
+                        address_from=tx_dict['from'].lower(),
+                        address_to=address_to.lower(),
                         trace_id=trace_id,
                         date=tx_dict['timeStamp'],
                         tx_type=tx_type,

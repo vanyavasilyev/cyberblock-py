@@ -2,7 +2,7 @@ from typing import Generator, Optional, Union
 from queue import Queue
 from collections import defaultdict
 
-from models.graph import AddressNode, TransactionEdge
+from models.graph import AddressNode, TransactionEdge, TransactionType
 from .ethereum_scanner import EthereumScanner
 
 
@@ -10,7 +10,7 @@ class BFSEthScanner(EthereumScanner):
     def scan_from(self, address: str, max_inerations: Optional[int] = None,
                   startblock: int = 0, endblock: int = 99999999) -> Generator[Union[AddressNode, TransactionEdge], None, None]:
         iterations_left = max_inerations if max_inerations else -1
-
+        address = address.lower()
         queue = Queue()
         queue.put((address, []))
 
@@ -18,6 +18,7 @@ class BFSEthScanner(EthereumScanner):
         visited.add('')
 
         address_set = set()
+        address_set.add(address)
         tx_hash_set = set()
         while (not queue.empty()) and (iterations_left != 0):
             iterations_left -= 1
@@ -28,6 +29,10 @@ class BFSEthScanner(EthereumScanner):
             )
             yield node
             for tx in txs_to_add:
+                if tx.tx_type == TransactionType.INTERNAL:
+                    tx_hash_set.add(tx.tx_hash + tx.trace_id)
+                else:
+                    tx_hash_set.add(tx.tx_hash)
                 yield tx
 
             to_add = defaultdict(list)
