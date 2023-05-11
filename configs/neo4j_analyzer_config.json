@@ -1,5 +1,6 @@
 {
     "etherscan_api_key": "MTH46DY922UPAM5NQQ9PT45JKZAEAPADVF",
     "neo4j_driver_args": ["bolt://localhost:7687", "neo4j", "bcdbBCDB"],
-    "queries_path": "../data/neo4j_queries.json"
+    "queries_path": "../data/neo4j_queries.json",
+    "neo4j_import_dir": ""
 }

@@ -8,7 +8,7 @@ if __name__ == '__main__':
         data = f.read()
         cfg: Neo4jConfig = Neo4jConfig.from_json(data)
     scanner = BFSEthScanner(cfg.etherscan_api_key)
-    driver = Neo4jDriver(*cfg.neo4j_driver_args)
+    driver = Neo4jDriver(*cfg.neo4j_driver_args, import_dir=cfg.neo4j_import_dir)
     analyzer = Neo4jAnalyzer(driver, [scanner], cfg.queries_path)
     CLInterface(analyzer).run()
     

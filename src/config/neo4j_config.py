@@ -9,3 +9,4 @@ class Neo4jConfig:
     etherscan_api_key: str
     neo4j_driver_args: List[str]
     queries_path: str
+    neo4j_import_dir: str

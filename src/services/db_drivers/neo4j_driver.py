@@ -2,12 +2,15 @@ from typing import Any, Generator, Union
 from neo4j import GraphDatabase
 
 from models import DBDriverInterface
-from models.graph import AddressNode, TransactionEdge
+from models.graph import AddressNode, TransactionEdge, TransactionType
 
 
 class Neo4jDriver(DBDriverInterface):
-    def __init__(self, uri, user, password):
+    def __init__(self, uri, user, password, *, buffer_size: int = 100, import_dir: str):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        self.edges = []
+        self.buffer_size = buffer_size
+        self.import_dir = import_dir
 
     def _close(self, *_):
         if self.driver is not None:
@@ -23,13 +26,21 @@ class Neo4jDriver(DBDriverInterface):
         )
 
     def add_edge(self, edge: TransactionEdge):
-        properties = \
-            f'tx_hash:"{edge.tx_hash}", ' +\
-            f'value:"{edge.value}"'
-        self.driver.session().run(
-            f'MATCH (a:Address), (b:Address) WHERE a.address="{edge.address_from}" AND b.address="{edge.address_to}" ' +\
-            f'CREATE (a)-[r:{edge.tx_type._name_} {{{properties}}}]->(b)'
-        )
+        self.edges.append(edge)
+        if len(self.edges) >= self.buffer_size:
+            with open(self.import_dir + "/edges.csv", 'w') as f:
+                f.write("from,to,tx_hash,tx_type,value\n")
+                edge_: TransactionEdge = edge
+                for edge_ in self.edges:
+                    f.write(f"{edge_.address_from},{edge_.address_to},{edge_.tx_hash},{edge_.tx_type._name_},{edge_.value}\n")
+                self.edges = []
+        for tx_type in TransactionType._member_names_:
+            self.driver.session().run(
+                'LOAD CSV WITH HEADERS FROM "file:///edges.csv" AS csvLine ' +\
+                'MATCH (from:Address {address: csvLine.from}), (to:Address {address: csvLine.to}) ' +\
+                f'WHERE csvLine.tx_type = "{tx_type}" ' +\
+                f'CREATE (from)-[r:{tx_type.upper()} {{tx_hash: csvLine.tx_hash, value: toInteger(csvLine.value)}}]->(to)'
+            )
 
     def load(self, data_generator: Generator[Union[AddressNode, TransactionEdge], None, None]):
         for obj in data_generator:
