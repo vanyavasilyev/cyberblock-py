@@ -13,5 +13,10 @@
         "name": "address_txs",
         "arg_names": ["address"],
         "query_str": "MATCH (n) WHERE n.address = \"{}\"  MATCH (n)-[r]-() RETURN r;"
+    },
+    {
+        "name": "in_out_ratio",
+        "arg_names": [],
+        "query_str": "match (adr1)-[]->(adr2) match (adr3)-[]->(adr1) with adr1.address as address, count(distinct adr2) as outgoing, count(distinct adr3) as ingoing with address, ingoing / outgoing as io_ratio return address, io_ratio"
     }
 ]

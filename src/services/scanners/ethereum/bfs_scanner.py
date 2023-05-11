@@ -21,6 +21,8 @@ class BFSEthScanner(EthereumScanner):
         address_set.add(address)
         tx_hash_set = set()
         while (not queue.empty()) and (iterations_left != 0):
+            if iterations_left % 20 == 0:
+                print(f"Iterations left: {iterations_left}")
             iterations_left -= 1
             cur_address, txs_to_add = queue.get()
             visited.add(cur_address)

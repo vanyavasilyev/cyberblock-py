@@ -51,5 +51,5 @@ class EthereumScanner(ScannerInterface, ABC):
                 page += 1
                 if len(txs_as_dicts) < 10000:
                     break
-            except (requests.exceptions.JSONDecodeError, TypeError):
+            except Exception:
                 pass        

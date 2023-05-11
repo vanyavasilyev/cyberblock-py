@@ -31,14 +31,17 @@ class Neo4jAnalyzer(AnalyzerInterface):
 
     def _db_response_handler(self, response):
         as_list = response.values()
-        res = []
-        for obj in as_list:
-            properties = obj[0]._properties
-            if 'address' in properties:
-                res.append(AddressNode(properties['address']))
-            if 'tx_hash' in properties:
-                res.append(TransactionEdge(properties['tx_hash'], '', ''))
-        return res
+        try:
+            res = []
+            for obj in as_list:
+                properties = obj[0]._properties
+                if 'address' in properties:
+                    res.append(AddressNode(properties['address']))
+                if 'tx_hash' in properties:
+                    res.append(TransactionEdge(properties['tx_hash'], '', ''))
+            return res
+        except:
+            return as_list
 
     def run_command(self, command: str, args: Any):
         if command == 'scan':
