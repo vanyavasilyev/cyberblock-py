@@ -18,5 +18,20 @@
         "name": "in_out_ratio",
         "arg_names": [],
         "query_str": "match (adr1)-[]->(adr2) match (adr3)-[]->(adr1) with adr1.address as address, count(distinct adr2) as outgoing, count(distinct adr3) as ingoing with address, ingoing / outgoing as io_ratio return address, io_ratio"
-    }
+    },
+    {
+        "name": "make_total_edges",
+        "arg_names": [],
+        "query_str": "match (n1), (n2) with n1, n2 match (n1)-[r]->(n2) with n1, n2, sum(r.value) as tv CREATE (n1)-[nr:TOTAL {value: tv}]->(n2)"
+    },
+    {
+        "name": "set_flows_to",
+        "arg_names": ["address"],
+        "query_str": "MATCH (t), (p) WITH t, p ORDER BY t.scan_id, p.scan_id CALL apoc.do.when( t.scan_id > p.scan_id, 'SET p.pf = 0 RETURN t, p', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( t.scan_id = p.scan_id, 'SET t.pf = 100000 RETURN t, p', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( t.scan_id < p.scan_id, ' MATCH (v)-[r:TOTAL]->(p) WHERE v.scan_id < p.scan_id WITH t, p, CASE WHEN v.pf < r.value THEN v.pf ELSE r.value END as ppf WITH t, p, sum(ppf) AS sppf SET p.pf =sppf RETURN t,p ', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( p.address = \"{}\", 'SET t.mf = p.pf RETURN t,p', 'RETURN t,p', {{t:t, p:p}}) YIELD value RETURN count(*)"
+    },
+    {
+        "name": "set_flows_from",
+        "arg_names": ["address"],
+        "query_str": "MATCH (t), (p) WITH t, p ORDER BY t.scan_id, p.scan_id CALL apoc.do.when( t.scan_id > p.scan_id, 'SET p.pf = 0 RETURN t, p', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( t.scan_id = p.scan_id, 'SET t.pf = 100000 RETURN t, p', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( t.scan_id < p.scan_id, ' MATCH (v)<-[r:TOTAL]-(p) WHERE v.scan_id < p.scan_id WITH t, p, CASE WHEN v.pf < r.value THEN v.pf ELSE r.value END as ppf WITH t, p, sum(ppf) AS sppf SET p.pf =sppf RETURN t,p ', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( p.address = \"{}\", 'SET t.mf = p.pf RETURN t,p', 'RETURN t,p', {{t:t, p:p}}) YIELD value RETURN count(*)"
+    }    
 ]
