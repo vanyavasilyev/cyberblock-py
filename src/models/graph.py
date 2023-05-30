@@ -12,6 +12,7 @@ class AddressNode:
     last_tx_date: Optional[int] = None
     number_of_outgoing_txs : int = 0
     number_of_incoming_txs: int = 0
+    scan_id: Optional[int] = None
 
 
 
