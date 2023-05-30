@@ -8,8 +8,11 @@ class Neo4jQuery:
         self.query_str = query_str
 
     def format_query(self, args: Union[list, dict]) -> str:
+        if not args:
+            return self.query_str
         if isinstance(args, list):
-            return self.query_str.format(*args)
+            res = self.query_str.format(*args)
+            return res
         args_list = []
         for arg_name in self.arg_names:
             args_list.append(args[arg_name])
