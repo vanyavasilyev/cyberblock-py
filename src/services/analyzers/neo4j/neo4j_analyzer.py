@@ -23,17 +23,20 @@ class Neo4jAnalyzer(AnalyzerInterface):
                 )
 
     def _scan_from(self, address: str, max_iterations: Any,
-                   startblock: int = 9000000, endblock: int = 99999999): 
+                   startblock: int = 9000000, endblock: int = 99999999,
+                   direction: str = "any", max_path: int = 5,  min_tx_val_eth: float = 1e30): 
         self.db_driver.load(self.active_scanner.scan_from(address,
                                                           int(max_iterations),
                                                           int(startblock),
-                                                          int(endblock)))
+                                                          int(endblock),
+                                                          direction,
+                                                          int(max_path),
+                                                          float(min_tx_val_eth)))
 
     def _db_response_handler(self, response):
-        as_list = response.values()
         try:
             res = []
-            for obj in as_list:
+            for obj in response:
                 properties = obj[0]._properties
                 if 'address' in properties:
                     res.append(AddressNode(properties['address']))
@@ -41,7 +44,7 @@ class Neo4jAnalyzer(AnalyzerInterface):
                     res.append(TransactionEdge(properties['tx_hash'], '', ''))
             return res
         except:
-            return as_list
+            return response
 
     def run_command(self, command: str, args: Any):
         if command == 'scan':

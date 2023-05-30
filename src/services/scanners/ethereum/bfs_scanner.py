@@ -8,7 +8,8 @@ from .ethereum_scanner import EthereumScanner
 
 class BFSEthScanner(EthereumScanner):
     def scan_from(self, address: str, max_inerations: Optional[int] = None,
-                  startblock: int = 0, endblock: int = 99999999) -> Generator[Union[AddressNode, TransactionEdge], None, None]:
+                  startblock: int = 0, endblock: int = 99999999,
+                  *args) -> Generator[Union[AddressNode, TransactionEdge], None, None]:
         iterations_left = max_inerations if max_inerations else -1
         address = address.lower()
         queue = Queue()
@@ -26,6 +27,7 @@ class BFSEthScanner(EthereumScanner):
             iterations_left -= 1
             cur_address, txs_to_add = queue.get()
             visited.add(cur_address)
+            print(cur_address)
             node = AddressNode(
                 cur_address,
             )
