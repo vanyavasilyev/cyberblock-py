@@ -39,7 +39,7 @@ class DirectedTreeScanner(EthereumScanner):
                         for obj in dfs(tx.address_from, path_left-1):
                             yield obj
 
-            if len(tx_dict[current_address]) == 0:
+            if len(tx_dict[current_address]) == 0 and current_address != address:
                 return
 
             for tx in self.get_txs_for_address(current_address, True, startblock,
