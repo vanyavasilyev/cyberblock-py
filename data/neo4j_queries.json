@@ -33,5 +33,15 @@
         "name": "set_flows_from",
         "arg_names": ["address"],
         "query_str": "MATCH (t), (p) WITH t, p ORDER BY t.scan_id, p.scan_id CALL apoc.do.when( t.scan_id > p.scan_id, 'SET p.pf = 0 RETURN t, p', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( t.scan_id = p.scan_id, 'SET t.pf = 100000 RETURN t, p', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( t.scan_id < p.scan_id, ' MATCH (v)<-[r:TOTAL]-(p) WHERE v.scan_id < p.scan_id WITH t, p, CASE WHEN v.pf < r.value THEN v.pf ELSE r.value END as ppf WITH t, p, sum(ppf) AS sppf SET p.pf =sppf RETURN t,p ', 'RETURN t,p', {{t:t, p:p}}) YIELD value WITH value.t as t, value.p as p CALL apoc.do.when( p.address = \"{}\", 'SET t.mf = p.pf RETURN t,p', 'RETURN t,p', {{t:t, p:p}}) YIELD value RETURN count(*)"
-    }    
+    },
+    {
+        "name": "possible_mixers",
+        "arg_names": ["addresses"],
+        "query_str": "match (n)-[r]-() WHERE n.address IN {} WITH n, r.tx_hash as tx_hash MATCH (n)-[ro]-() where tx_hash = ro.tx_hash WITH n, collect(DISTINCT ro) as rs, tx_hash WITH n, reduce(acc = 0, nr in rs | acc + nr.value) as ss, tx_hash WITH n, ss, tx_hash WITH n, percentileCont(ss, 0.1) AS ls, percentileCont(ss, 0.9) AS hs WITH n, 2*(hs - ls) / (ls + hs + 0.00001) < 0.01 AS same_amounts, ls > 0.01 AS mostly_non_zero, ls, hs RETURN n.address, same_amounts AND mostly_non_zero"
+    },
+    {
+        "name": "possible_mixers_all",
+        "arg_names": [],
+        "query_str": "match (n)-[r]-() WITH n, r.tx_hash as tx_hash MATCH (n)-[ro]-() where tx_hash = ro.tx_hash WITH n, collect(DISTINCT ro) as rs, tx_hash WITH n, reduce(acc = 0, nr in rs | acc + nr.value) as ss, tx_hash WITH n, ss, tx_hash WITH n, percentileCont(ss, 0.1) AS ls, percentileCont(ss, 0.9) AS hs WITH n, 2*(hs - ls) / (ls + hs + 0.00001) < 0.01 AS same_amounts, ls > 0.01 AS mostly_non_zero, ls, hs RETURN n.address, same_amounts AND mostly_non_zero"
+    }
 ]
