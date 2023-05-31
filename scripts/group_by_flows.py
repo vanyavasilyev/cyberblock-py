@@ -45,7 +45,7 @@ with open(RESULT_FILENAME, "w") as f:
             if in_[0][0] == out_[0][0]:
                 continue
             s = f"Group with value ~{in_[0][2]}\n"
-            s == f"Potential spenders: \n"
+            s += f"Potential spenders: \n"
             for spender in in_:
                 s += f"{spender[0]}: {spender[2]}\n"
             s += f"Potential receivers: \n"

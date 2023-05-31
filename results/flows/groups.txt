@@ -1,21 +1,25 @@
 Group with value ~10.0
+Potential spenders: 
 "0x2cbbe810fe3ea86c261395e05f5f3942b03e08e9": 10.0
 "0x7269d7d6f8a76a8faef77a77509826c1fa829c19": 10.0
 Potential receivers: 
 "0x42d49086d884202b8f5c52a5bfe96eb3893354bb": 9.93
 
 Group with value ~7.0
+Potential spenders: 
 "0xfec7ad87eefdac966ec958084fe28cce2c557d07": 7.0
 "0xaab7afa6361506676d4f96dae35abfcc9a825de7": 7.0
 Potential receivers: 
 "0x1d7c61e7f306f848e62df8bb595dc2adeee697f3": 7.0
 
 Group with value ~6.081106050800001
+Potential spenders: 
 "0xb86700436692333493a3aebff1ca7bd688a009bc": 6.081106050800001
 Potential receivers: 
 "0xf9ebd8d480690ac7d570afcc0cc7b097423bb19a": 5.877800000000001
 
 Group with value ~5.0
+Potential spenders: 
 "0x037f91ab7d10359c707628219302ffb1f30e1a1c": 5.0
 "0xaaf9220bbc1498f7dbd8d1ea52bf7d46725ac9ec": 5.0
 "0x538eb0f1aee62dc84340a9a1144683f1552eb40c": 5.0
@@ -30,6 +34,7 @@ Potential receivers:
 "0x31108494f9b52a6f75e74ed54888706b23de9f85": 4.8875
 
 Group with value ~4.0
+Potential spenders: 
 "0x41553237d51aad5a5cf32d701170db5be048f06a": 4.0
 "0xccaf08555354630f81ff6102714ea27e713956fb": 4.0
 "0x433054c3e5d1ab5def23ebdc5ada39941c3e2c0e": 4.0
@@ -38,6 +43,7 @@ Potential receivers:
 "0x8e1cca6ea6b4a6dae69b293cadcff26122c81539": 3.9022612
 
 Group with value ~3.0
+Potential spenders: 
 "0xcbe88b9a28b74ac60b3d28815a0aaa2af037b0bb": 3.0
 "0xdd280a3059332644055f34b720caeeeb42813be4": 3.0
 "0xbf4920ac17fd33ff454f27638691cfbdb1fa868e": 3.0
@@ -59,6 +65,7 @@ Potential receivers:
 "0xe80a07c3765c923175a29e324ca9509c4e21080b": 2.9195
 
 Group with value ~2.026922949057325
+Potential spenders: 
 "0xf8adc1d947be5aa5152a08127e0641bc33d16b1d": 2.026922949057325
 Potential receivers: 
 "0x73c98d06125acdf9471b66f95b325c2b6decf0db": 2.0
@@ -74,6 +81,7 @@ Potential receivers:
 "0xf45643d9a87e70e8019bb43eee05d8fa6799ebe5": 2.0
 
 Group with value ~2.0
+Potential spenders: 
 "0x262200ce510b468de8c7a9645c94eb198f4b3409": 2.0
 "0x74da3959769ffbe7d97d6050af4379dc81036f94": 2.0
 "0xe1aa47f259e6947e140c1463a852481a64c9b4fd": 2.0
@@ -144,6 +152,7 @@ Potential receivers:
 "0xae6f4030df222ec8dcb9e7ba0b5343002f9f013f": 1.938
 
 Group with value ~1.9047674030425927
+Potential spenders: 
 "0x76fb846466ce93798e60bd7f3f47739306efc27e": 1.9047674030425927
 Potential receivers: 
 "0x40737c160a6c470df279e686678a9634a29e656f": 1.917362302
@@ -152,6 +161,7 @@ Potential receivers:
 "0xbc328af2f73542a75e63d4be83b63ef240e39c54": 1.875
 
 Group with value ~1.76517713
+Potential spenders: 
 "0xa15280938d655278847b0f3273b87a02b45d7fc7": 1.76517713
 "0xb167c5e393fd187d47719e552aab964b244ffceb": 1.76517713
 Potential receivers: 
@@ -159,6 +169,7 @@ Potential receivers:
 "0xf553a10c7318c8636080509d42d758a95bbe18d9": 1.7695
 
 Group with value ~1.566876205
+Potential spenders: 
 "0xfff05e8ab799ab46dc71d58c33ab466758dfe0a2": 1.566876205
 Potential receivers: 
 "0xa6aec74511f184d24d94260ac890f243ba2b5a5b": 1.55025
@@ -168,11 +179,13 @@ Potential receivers:
 "0x5d0b243a5501effa8aea9e00885d9878cb4fc9c6": 1.55025
 
 Group with value ~1.4432207
+Potential spenders: 
 "0xcfdf35ad4a8616660854b1496f898f64609bee8b": 1.4432207
 Potential receivers: 
 "0x785cde8fa5de656d17d7f52508ec7c8f25966d97": 1.41
 
 Group with value ~1.4105419
+Potential spenders: 
 "0xa2f33f571b848033b9145c03a94b4e3213570b29": 1.4105419
 "0x4a81910b9968e8c5e5daefe9e049cb5986a3796d": 1.4
 Potential receivers: 
@@ -180,11 +193,13 @@ Potential receivers:
 "0xd57848739770eb1948c149f78d4f0f163cbdb637": 1.36835454
 
 Group with value ~1.0682468970373171
+Potential spenders: 
 "0x8271e233466ff21c38b30b3079554e33f8931fdb": 1.0682468970373171
 Potential receivers: 
 "0x584c94dfb8ebed0eb01063f4c0d569fe04e9c479": 1.027
 
 Group with value ~1.0
+Potential spenders: 
 "0x7d47ee7f8f4a7dafa26006c6b7d390bcd16f3cfb": 1.0
 "0xbcc492df37bd4ec651d46d72230e340c9ec1950c": 1.0
 "0x37c4fd45135a3c4eb113d5d61509577d51aa13b5": 1.0
@@ -443,6 +458,7 @@ Potential receivers:
 "0x7ce7f5a6dac48c4f9f237a53083d9d9e8ac8bc45": 0.961179
 
 Group with value ~0.9097891436097716
+Potential spenders: 
 "0xb244911ed2cd5ef0ad1b8249fd7632febc8211c5": 0.9097891436097716
 "0x2a40f69673fc96ed842ca66c0c5a557954cd838b": 0.9
 "0xb081bd4f319137df5cb14410bd54616c31fd282a": 0.9
@@ -451,6 +467,7 @@ Potential receivers:
 "0x0c396dc3ac06e7d1d3284720b795fef6e907af67": 0.887969265489639
 
 Group with value ~0.8601095788
+Potential spenders: 
 "0x52ed455d20b187c4e8787bcd73cfeb8d353b3276": 0.8601095788
 "0x0fe11657759f849afce643ad9f8848c7c5cb0069": 0.8574200000000001
 Potential receivers: 
@@ -458,6 +475,7 @@ Potential receivers:
 "0xc7c39f1586349033ff1457332a5eb19b4bc75b2d": 0.85656162
 
 Group with value ~0.7797021077
+Potential spenders: 
 "0xf6e8cb15be8ba0c031659689d8c1fd11e5519b01": 0.7797021077
 "0x4e25c0d68bf8041fd9e3edf030008410822d9445": 0.7797021077
 "0xfaebfe96237dc5d5d6c9434db745c8fc8d912359": 0.7797021077
@@ -465,6 +483,7 @@ Potential receivers:
 "0x7cbe73aa3bc2bda1b9433ce44577c5db5124f366": 0.76
 
 Group with value ~0.7100000000000001
+Potential spenders: 
 "0x20520d90756171d6bfd78b392a90a5cb46b431d2": 0.7100000000000001
 "0xd320a35ee540f23473d59f6f24e5862235770882": 0.7100000000000001
 "0x289f343b0b3ff5e287f10cdbe2eda38c0a0e117d": 0.7100000000000001
@@ -474,11 +493,13 @@ Potential receivers:
 "0x5dd69eea04fbde7271fea0291c2e368355f45e96": 0.6828700000000001
 
 Group with value ~0.6000000000000001
+Potential spenders: 
 "0x29c42ff018e8719a2b8bf60406f4157e04f21747": 0.6000000000000001
 Potential receivers: 
 "0xd3f736e026fd43f5dda6be9acf091fea792185d7": 0.5851239885025394
 
 Group with value ~0.5482250000000001
+Potential spenders: 
 "0xff1e3e987cfbb867d0041a53cb9910921f152791": 0.5482250000000001
 "0x4d06988ad349140640d43f1269c8a2febf5ecb28": 0.5482250000000001
 "0x6c4ae937a1c35b1b21c73b7e0f6c0ca6c52dbd41": 0.5482250000000001
@@ -487,6 +508,7 @@ Potential receivers:
 "0x6a221131d49f2cff566e23a1772056e32dee9449": 0.53463
 
 Group with value ~0.5074213200000001
+Potential spenders: 
 "0x56f12370ba5b1bbbc2649f5b93070f6fd0c6775f": 0.5074213200000001
 "0x298111be709ba9a98409a8b25e8c6420c74e363e": 0.5
 "0x32f38deaa965150a3513a4c7d5649a0afb519ff8": 0.5
@@ -496,6 +518,7 @@ Potential receivers:
 "0x6872c6c9ec1ed559bb2deb0c4d714a6c46e605ff": 0.5
 
 Group with value ~0.49312881
+Potential spenders: 
 "0x8af1c9334c03944278a371f8a708e470f6873994": 0.49312881
 "0x972b1058eaa6c5c69e81daec8c4c81b2a2df09a3": 0.49312881
 "0x0e18703767484e1b7a2a6139d2c096b1caf43cc6": 0.4886062
@@ -503,6 +526,7 @@ Potential receivers:
 "0x6f90d94612b30a66e3787e22e519a2e10e222d0f": 0.48
 
 Group with value ~0.48036221
+Potential spenders: 
 "0x8bf7f353f200cf2f803c42e189fc81c439ffb34d": 0.48036221
 "0x3d2b92d9df9510fc5495e9c4495142ee132164c6": 0.48036221
 "0x5a156f0777a4ace2b606657256d8e50c7b78a26d": 0.4732910433230105
@@ -510,6 +534,7 @@ Potential receivers:
 "0xe3e6917802ebfeecb844349cbb007151efe98b6a": 0.468
 
 Group with value ~0.36233547
+Potential spenders: 
 "0xfd4416617c72fc6b2f0dfe0859eebca3a75bdf32": 0.36233547
 "0xb64073466455b85e4d3a0e67a895bb7204741893": 0.358
 Potential receivers: 
@@ -518,12 +543,14 @@ Potential receivers:
 "0xfff05e8ab799ab46dc71d58c33ab466758dfe0a2": 0.350946
 
 Group with value ~0.33666419
+Potential spenders: 
 "0x80191db8a316bbba2a8dc381ba1f337e77da5311": 0.33666419
 Potential receivers: 
 "0xe1f611c6737b9dd4f2b1a271819f8fb3bd7f01e2": 0.33474
 "0x455239a9fc851b1eead3149cb234f62024e0ec77": 0.3263919697478106
 
 Group with value ~0.30288845
+Potential spenders: 
 "0x543abafd3c571ddbeda8dcd4c6b5ec204add378e": 0.30288845
 "0xa7553de899cda785a55d8eb2ead1ab08cb4115fd": 0.3
 Potential receivers: 
@@ -534,6 +561,7 @@ Potential receivers:
 "0x9dcd647373ea763680a4a6e52ef175fbe4f8bc63": 0.2991552001562585
 
 Group with value ~0.29
+Potential spenders: 
 "0x2ade126890ca62b4f4dbce6535e9a0ef45a9d85d": 0.29
 Potential receivers: 
 "0x6e8b370ad2adc4e09a67037d1e22c774264d35a5": 0.2846263887094218
@@ -541,6 +569,7 @@ Potential receivers:
 "0x02bfe1c6a7d246e84d026086413923e503264901": 0.2846263887094218
 
 Group with value ~0.2714463336705501
+Potential spenders: 
 "0xfb7af329664c5dc212ba7a7b7057f83f61ecd22d": 0.2714463336705501
 Potential receivers: 
 "0x4ea7758f8226d0d3ba36cb80b13846358f60e64d": 0.26711459
